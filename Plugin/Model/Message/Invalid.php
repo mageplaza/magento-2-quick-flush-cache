@@ -57,7 +57,7 @@ class Invalid
     {
         if ($this->_helperData->isEnabledReindex()) {
             $result .= __(' <a onclick="mpQFCAjax.quickFlushCacheAndReindex(\'' .
-                $this->_helperData->getReindexUrl() . '\')" id="mp-qfc-reindex" href="#">Reindex Now!</a>');
+                $this->_helperData->getReindexUrl() . '\',\'reindex\')" id="mp-qfc-reindex" href="#">Reindex Now!</a>');
         }
 
         return $result;

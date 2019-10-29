@@ -57,7 +57,7 @@ class CacheOutdated
     {
         if ($this->_helperData->isEnabledFlushCache()) {
             $result .= __(' <a onclick="mpQFCAjax.quickFlushCacheAndReindex(\'' .
-                $this->_helperData->getFlushCacheUrl() . '\')" id="mp-qfc-flush-cache" href="#">Flush Now!</a>');
+                $this->_helperData->getFlushCacheUrl() . '\',\'cache\')" id="mp-qfc-flush-cache" href="#">Flush Now!</a>');
         }
 
         return $result;

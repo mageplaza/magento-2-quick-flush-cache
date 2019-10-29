@@ -21,6 +21,12 @@
 
 /** @var \Magento\Framework\View\Element\Template $block */
 ?>
+<div class="mpQFC-image-loader grid-loader">
+    <div class="loader">
+        <img src="<?= /* @noEscape */ $block->getViewFileUrl('images/loader-1.gif') ?>"
+             alt="<?= /* @noEscape */ __('Loading') ?>">
+    </div>
+</div>
 <script type="text/javascript">
     require([
         'jquery',
@@ -29,9 +35,12 @@
         mpQFCAjax = {
 
             /** Ajax quick flush cache & reindex */
-            quickFlushCacheAndReindex: function (url) {
+            quickFlushCacheAndReindex: function (url, type) {
                 var target;
 
+                if (type === 'reindex'){
+                    $('.notices-wrapper .mpQFC-image-loader').show();
+                }
                 $.ajax({
                     type: "POST",
                     url: url,
@@ -43,7 +52,11 @@
                         if (response.status) {
                             target = mpQFCAjax.updateGrid();
                             target.on('reloaded', function () {
+                                $('.page-content .messages').remove();
                                 $(response.message).insertBefore($('.page-columns'));
+                                if (type === 'reindex'){
+                                    $('.notices-wrapper .mpQFC-image-loader').hide();
+                                }
                             });
                         }
                     },

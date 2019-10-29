@@ -21,6 +21,9 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Mageplaza_QuickFlushCache::css/style.css"/>
+    </head>
     <body>
         <referenceContainer name="notifications">
             <block class="Magento\Framework\View\Element\Template" name="mp_qfc_ajax" template="Mageplaza_QuickFlushCache::ajax.phtml"/>
