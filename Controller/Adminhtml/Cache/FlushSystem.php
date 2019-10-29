@@ -24,7 +24,6 @@ namespace Mageplaza\QuickFlushCache\Controller\Adminhtml\Cache;
 use Exception;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Cache\FrontendInterface;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Element\Messages;
@@ -54,9 +53,12 @@ class FlushSystem extends AbstractController
         if (!$request->isAjax()) {
             return $this->_resultFwFactory->create()->forward('noroute');
         }
-        /** @var FrontendInterface $cacheFrontend */
-        foreach ($this->_cacheFrontendPool as $cacheFrontend) {
-            $cacheFrontend->clean();
+        $invalidCaches = [];
+        foreach ($this->_cacheTypeList->getInvalidated() as $type) {
+            $invalidCaches[] = $type->getId();
+        }
+        foreach ($invalidCaches as $typeId) {
+            $this->_cacheTypeList->cleanType($typeId);
         }
 
         $this->_eventManager->dispatch('adminhtml_cache_flush_system');

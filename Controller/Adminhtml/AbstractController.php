@@ -23,8 +23,8 @@ namespace Mageplaza\QuickFlushCache\Controller\Adminhtml;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\Controller\Result\ForwardFactory;
-use Magento\Framework\App\Cache\Frontend\Pool;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\View\Layout;
 use Magento\Indexer\Model\Processor;
@@ -42,9 +42,9 @@ abstract class AbstractController extends Action
     protected $_resultFwFactory;
 
     /**
-     * @var Pool
+     * @var TypeListInterface
      */
-    protected $_cacheFrontendPool;
+    protected $_cacheTypeList;
 
     /**
      * @var Json
@@ -71,7 +71,7 @@ abstract class AbstractController extends Action
      *
      * @param Context $context
      * @param ForwardFactory $resultFwFactory
-     * @param Pool $cachePool
+     * @param TypeListInterface $cacheTypeList
      * @param Json $resultJson
      * @param Layout $layout
      * @param Processor $processor
@@ -80,7 +80,7 @@ abstract class AbstractController extends Action
     public function __construct(
         Context $context,
         ForwardFactory $resultFwFactory,
-        Pool $cachePool,
+        TypeListInterface $cacheTypeList,
         Json $resultJson,
         Layout $layout,
         Processor $processor,
@@ -90,11 +90,11 @@ abstract class AbstractController extends Action
             $context
         );
 
-        $this->_resultFwFactory   = $resultFwFactory;
-        $this->_cacheFrontendPool = $cachePool;
-        $this->_resultJson        = $resultJson;
-        $this->_layout            = $layout;
-        $this->_processor         = $processor;
-        $this->_helperData        = $helperData;
+        $this->_resultFwFactory = $resultFwFactory;
+        $this->_cacheTypeList   = $cacheTypeList;
+        $this->_resultJson      = $resultJson;
+        $this->_layout          = $layout;
+        $this->_processor       = $processor;
+        $this->_helperData      = $helperData;
     }
 }

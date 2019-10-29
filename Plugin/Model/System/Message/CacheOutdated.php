@@ -23,6 +23,7 @@ namespace Mageplaza\QuickFlushCache\Plugin\Model\System\Message;
 
 use Magento\AdminNotification\Model\System\Message\CacheOutdated as SystemCacheOutdated;
 use Mageplaza\QuickFlushCache\Helper\Data as HelperData;
+use Mageplaza\QuickFlushCache\Model\Config\Source\System\YesNo;
 
 /**
  * Class CacheOutdated
@@ -55,7 +56,7 @@ class CacheOutdated
      */
     public function afterGetText(SystemCacheOutdated $subject, $result)
     {
-        if ($this->_helperData->isEnabledFlushCache()) {
+        if ($this->_helperData->isEnabledFlushCache() === YesNo::MANUAL) {
             $result .= __(' <a onclick="mpQFCAjax.quickFlushCacheAndReindex(\'' .
                 $this->_helperData->getFlushCacheUrl() . '\',\'cache\')" id="mp-qfc-flush-cache" href="#">Flush Now!</a>');
         }
