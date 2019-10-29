@@ -1,0 +1,79 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_FollowUpEmail
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'uiRegistry'
+    ], function ($, registry) {
+        mpQFCAjax = {
+
+            /** Ajax quick flush cache & reindex */
+            quickFlushCacheAndReindex: function (url) {
+                var target;
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {},
+                    success: function (response) {
+                        if (response.ajaxRedirect) {
+                            window.location.href = response.ajaxRedirect;
+                        }
+                        if (response.status) {
+                            target = mpQFCAjax.updateGrid();
+                            target.on('reloaded', function () {
+                                $(response.message).insertBefore($('.page-columns'));
+                            });
+                        }
+                    },
+                    error: function (e) {
+                        $(mpQFCAjax.errorMessageHtml(e.responseText)).insertBefore($('.page-columns'));
+                    }
+                });
+            },
+
+            /** Get error message in html */
+            errorMessageHtml: function (messageText) {
+                return '<div class="messages">' +
+                    '<div class="message message-error error">' +
+                    '<div data-ui-id="magento-framework-view-element-messages-0-message-error">' +
+                    messageText +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+            },
+
+            /** Update ui system message */
+            updateGrid: function () {
+                var target = registry.get('notification_area.notification_area_data_source');
+
+                if (target && typeof target === 'object') {
+                    target.reload({refresh: 1});
+                }
+
+                return target;
+            }
+        };
+    });
+</script>
