@@ -85,11 +85,12 @@ class Synchronized
             foreach ($this->_cacheTypeList->getInvalidated() as $type) {
                 $invalidCaches[] = $type->getId();
             }
-            foreach ($invalidCaches as $typeId) {
-                $this->_cacheTypeList->cleanType($typeId);
+            if ($invalidCaches) {
+                foreach ($invalidCaches as $typeId) {
+                    $this->_cacheTypeList->cleanType($typeId);
+                }
+                $this->_eventManager->dispatch('adminhtml_cache_flush_system');
             }
-            $this->_eventManager->dispatch('adminhtml_cache_flush_system');
-            $this->_messageManager->addSuccessMessage(__('The Magento cache storage has been auto flushed.'));
         }
     }
 }
