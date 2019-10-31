@@ -19,20 +19,22 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace Mageplaza\QuickFlushCache\Plugin\Model\ResourceModel\System\Message\Collection;
+namespace Mageplaza\QuickFlushCache\Observer;
 
-use Magento\AdminNotification\Model\ResourceModel\System\Message\Collection\Synchronized as MessageSynchronized;
 use Magento\Framework\App\Cache\TypeListInterface;
+use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Message\ManagerInterface as MessageManagerInterface;
+use Magento\Framework\Event\Observer as EventObserver;
+use Magento\Framework\Event\ObserverInterface;
 use Mageplaza\QuickFlushCache\Helper\Data as HelperData;
 use Mageplaza\QuickFlushCache\Model\Config\Source\System\YesNo;
 
 /**
- * Class Synchronized
- * @package Mageplaza\QuickFlushCache\Plugin\Model\ResourceModel\System\Message\Collection
+ * Class ControllerActionPredispatch
+ * @package Mageplaza\TwoFactorAuth\Observer\Backend
  */
-class Synchronized
+class ControllerActionPredispatch implements ObserverInterface
 {
     /**
      * @var ManagerInterface
@@ -55,7 +57,7 @@ class Synchronized
     protected $_helperData;
 
     /**
-     * Synchronized constructor.
+     * ControllerActionPredispatch constructor.
      *
      * @param ManagerInterface $eventManager
      * @param MessageManagerInterface $messageManager
@@ -68,19 +70,25 @@ class Synchronized
         TypeListInterface $cacheTypeList,
         HelperData $helperData
     ) {
-        $this->_eventManager   = $eventManager;
+        $this->_eventManager  = $eventManager;
         $this->_messageManager = $messageManager;
-        $this->_cacheTypeList  = $cacheTypeList;
-        $this->_helperData     = $helperData;
+        $this->_cacheTypeList = $cacheTypeList;
+        $this->_helperData    = $helperData;
     }
 
     /**
-     * @param MessageSynchronized $subject
-     * @SuppressWarnings(Unused)
+     * @param EventObserver $observer
      */
-    public function before_afterLoad(MessageSynchronized $subject)
+    public function execute(EventObserver $observer)
     {
-        if ($this->_helperData->isEnabledFlushCache() === YesNo::AUTO) {
+        /** @var RequestInterface $request */
+        $request              = $observer->getEvent()->getRequest();
+        $notAllowedController = [
+            'adminhtml_auth_login',
+            'adminhtml_auth_forgotpassword'
+        ];
+        if ($this->_helperData->isEnabledFlushCache() === YesNo::AUTO
+            && !in_array($request->getFullActionName(), $notAllowedController, true)) {
             $invalidCaches = [];
             foreach ($this->_cacheTypeList->getInvalidated() as $type) {
                 $invalidCaches[] = $type->getId();
@@ -90,6 +98,7 @@ class Synchronized
                     $this->_cacheTypeList->cleanType($typeId);
                 }
                 $this->_eventManager->dispatch('adminhtml_cache_flush_system');
+                $this->_messageManager->addSuccessMessage(__('The Magento cache storage has been auto flushed.'));
             }
         }
     }

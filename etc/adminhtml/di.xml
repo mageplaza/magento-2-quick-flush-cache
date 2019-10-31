@@ -27,7 +27,4 @@
     <type name="Magento\Indexer\Model\Message\Invalid">
         <plugin name="mp-qfc-indexer-invalid" type="Mageplaza\QuickFlushCache\Plugin\Model\Message\Invalid"/>
     </type>
-    <type name="Magento\AdminNotification\Model\ResourceModel\System\Message\Collection\Synchronized">
-        <plugin name="mp-qfc-message-synchronized" type="Mageplaza\QuickFlushCache\Plugin\Model\ResourceModel\System\Message\Collection\Synchronized"/>
-    </type>
 </config>
