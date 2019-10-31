@@ -57,8 +57,7 @@ class CacheOutdated
     public function afterGetText(SystemCacheOutdated $subject, $result)
     {
         if ($this->_helperData->isEnabledFlushCache() === YesNo::MANUAL) {
-            $result .= __(' <a onclick="mpQFCAjax.quickFlushCacheAndReindex(\'' .
-                $this->_helperData->getFlushCacheUrl() . '\',\'cache\')" id="mp-qfc-flush-cache" href="#">Flush Now!</a>');
+            $result .= __(' <a id="mp-qfc-flush-cache" href="#">Flush Now!</a>');
         }
 
         return $result;
