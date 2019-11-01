@@ -66,6 +66,7 @@ class FlushSystem extends AbstractController
         /** @var Messages $messageBlock */
         $messageBlock = $this->_layout->createBlock(Messages::class);
         $messageBlock->addSuccess(__('The Magento cache storage has been flushed.'));
+
         $result = [
             'status'  => true,
             'message' => $messageBlock->toHtml()

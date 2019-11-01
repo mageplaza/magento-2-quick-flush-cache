@@ -64,6 +64,7 @@ define([
                     if (response.status) {
                         target = el.updateGrid();
                         target.on('reloaded', function () {
+                            $('.page-content .messages').remove();
                             $(response.message).insertBefore($('.page-columns'));
                             if (type === 'reindex') {
                                 $('.notices-wrapper .mpQFC-image-loader').hide();
