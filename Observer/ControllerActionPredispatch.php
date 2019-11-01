@@ -85,7 +85,9 @@ class ControllerActionPredispatch implements ObserverInterface
         $request              = $observer->getEvent()->getRequest();
         $notAllowedController = [
             'adminhtml_auth_login',
-            'adminhtml_auth_forgotpassword'
+            'adminhtml_auth_forgotpassword',
+            'mpquickflushcache_cache_flushsystem',
+            'mpquickflushcache_indexer_reindex'
         ];
         if ($this->_helperData->isEnabledFlushCache() === YesNo::AUTO
             && !in_array($request->getFullActionName(), $notAllowedController, true)) {
