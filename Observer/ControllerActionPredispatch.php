@@ -86,6 +86,7 @@ class ControllerActionPredispatch implements ObserverInterface
         $notAllowedController = [
             'adminhtml_auth_login',
             'adminhtml_auth_forgotpassword',
+            'mui_index_render',
             'mpquickflushcache_cache_flushsystem',
             'mpquickflushcache_indexer_reindex'
         ];
