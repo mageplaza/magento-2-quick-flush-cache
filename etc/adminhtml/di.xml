@@ -27,4 +27,10 @@
     <type name="Magento\Indexer\Model\Message\Invalid">
         <plugin name="mp-qfc-indexer-invalid" type="Mageplaza\QuickFlushCache\Plugin\Model\Message\Invalid"/>
     </type>
+    <type name="Magento\Indexer\Controller\Adminhtml\Indexer\ListAction">
+        <plugin name="mp-qfc-indexer-list" type="Mageplaza\QuickFlushCache\Plugin\Controller\Indexer\ListAction"/>
+    </type>
+    <type name="Magento\Backend\Controller\Adminhtml\Cache\Index">
+        <plugin name="mp-qfc-cache-list" type="Mageplaza\QuickFlushCache\Plugin\Controller\Cache\Index"/>
+    </type>
 </config>

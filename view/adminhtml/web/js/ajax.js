@@ -70,6 +70,14 @@ define([
                                 $('.notices-wrapper .mpQFC-image-loader').hide();
                             }
                         });
+                        if (type === 'reindex' && typeof gridIndexerJsObject !== 'undefined') {
+                            gridIndexerJsObject.useAjax = true;
+                            gridIndexerJsObject.reload();
+                        }
+                        if (type === 'cache' && typeof cache_gridJsObject !== 'undefined') {
+                            cache_gridJsObject.useAjax = true;
+                            cache_gridJsObject.reload();
+                        }
                     }
                 },
                 error: function (e) {
