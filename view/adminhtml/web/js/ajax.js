@@ -27,7 +27,9 @@ define([
     $.widget('mageplaza.qfcAjax', {
         options: {
             flushCacheUrl: {},
-            reindexUrl: {}
+            flushCacheIndexUrl: {},
+            reindexUrl: {},
+            reindexListUrl: {},
         },
 
         /**
@@ -72,10 +74,12 @@ define([
                         });
                         if (type === 'reindex' && typeof gridIndexerJsObject !== 'undefined') {
                             gridIndexerJsObject.useAjax = true;
+                            gridIndexerJsObject.url = el.options.reindexListUrl;
                             gridIndexerJsObject.reload();
                         }
                         if (type === 'cache' && typeof cache_gridJsObject !== 'undefined') {
                             cache_gridJsObject.useAjax = true;
+                            cache_gridJsObject.url = el.options.flushCacheIndexUrl;
                             cache_gridJsObject.reload();
                         }
                     }

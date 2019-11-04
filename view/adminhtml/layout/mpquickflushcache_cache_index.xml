@@ -20,11 +20,6 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Magento\AdminNotification\Model\System\Message\CacheOutdated">
-        <plugin name="mp-qfc-cache-out-dated" type="Mageplaza\QuickFlushCache\Plugin\Model\System\Message\CacheOutdated"/>
-    </type>
-    <type name="Magento\Indexer\Model\Message\Invalid">
-        <plugin name="mp-qfc-indexer-invalid" type="Mageplaza\QuickFlushCache\Plugin\Model\Message\Invalid"/>
-    </type>
-</config>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="adminhtml_cache_index"/>
+</page>

@@ -32,7 +32,9 @@
         "*": {
             "mpQFC/ajax":{
                 "flushCacheUrl": "<?= /* @noEscape */ $block->getUrl('mpquickflushcache/cache/flushSystem') ?>",
-                "reindexUrl": "<?= /* @noEscape */ $block->getUrl('mpquickflushcache/indexer/reindex') ?>"
+                "flushCacheIndexUrl": "<?= /* @noEscape */ $block->getUrl('mpquickflushcache/cache/index') ?>",
+                "reindexUrl": "<?= /* @noEscape */ $block->getUrl('mpquickflushcache/indexer/reindex') ?>",
+                "reindexListUrl": "<?= /* @noEscape */ $block->getUrl('mpquickflushcache/indexer/list') ?>"
             }
         }
     }

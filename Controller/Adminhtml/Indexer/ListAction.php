@@ -19,66 +19,52 @@
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
-namespace Mageplaza\QuickFlushCache\Plugin\Controller\Indexer;
+namespace Mageplaza\QuickFlushCache\Controller\Adminhtml\Indexer;
 
-use Magento\Indexer\Controller\Adminhtml\Indexer\ListAction as IndexerListAction;
-use Magento\Framework\App\ViewInterface;
-use Magento\Framework\App\ResponseInterface;
+use Magento\Backend\App\Action\Context;
+use Magento\Indexer\Controller\Adminhtml\Indexer;
 use Mageplaza\QuickFlushCache\Helper\Data as HelperData;
 
 /**
- * Class Invalid
- * @package Mageplaza\QuickFlushCache\Plugin\Model\Message
+ * Class ListAction
+ * @package Mageplaza\QuickFlushCache\Controller\Adminhtml\Indexer
  */
-class ListAction
+class ListAction extends Indexer
 {
-    /**
-     * @var ViewInterface
-     */
-    protected $_view;
-
-    /**
-     * @var ResponseInterface
-     */
-    protected $_response;
-
     /**
      * @var HelperData
      */
     protected $_helperData;
 
     /**
-     * Invalid constructor.
+     * ListAction constructor.
      *
-     * @param ViewInterface $view
-     * @param ResponseInterface $response
+     * @param Context $context
      * @param HelperData $helperData
      */
     public function __construct(
-        ViewInterface $view,
-        ResponseInterface $response,
+        Context $context,
         HelperData $helperData
     ) {
-        $this->_view = $view;
-        $this->_response = $response;
         $this->_helperData = $helperData;
+
+        parent::__construct(
+            $context
+        );
     }
 
     /**
-     * @param IndexerListAction $subject
-     * @param $result
-     * @SuppressWarnings(Unused)
+     * Display processes grid action
      *
-     * @return mixed
+     * @return void
      */
-    public function afterExecute(IndexerListAction $subject, $result)
+    public function execute()
     {
-        if ($this->_helperData->isEnabledReindex() && $subject->getRequest()->isAjax()) {
+        $this->_view->loadLayout();
+        if ($this->_helperData->isEnabledReindex() && $this->getRequest()->isAjax()) {
             $gridBlock = $this->_view->getLayout()->getBlock('adminhtml.indexer.grid.container');
 
             return $this->_response->representJson($gridBlock->toHtml());
         }
-
-        return $result;
     }
 }
