@@ -24,9 +24,9 @@ namespace Mageplaza\QuickFlushCache\Observer;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Event\ManagerInterface;
-use Magento\Framework\Message\ManagerInterface as MessageManagerInterface;
 use Magento\Framework\Event\Observer as EventObserver;
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Framework\Message\ManagerInterface as MessageManagerInterface;
 use Mageplaza\QuickFlushCache\Helper\Data as HelperData;
 use Mageplaza\QuickFlushCache\Model\Config\Source\System\YesNo;
 
@@ -70,10 +70,10 @@ class ControllerActionPredispatch implements ObserverInterface
         TypeListInterface $cacheTypeList,
         HelperData $helperData
     ) {
-        $this->_eventManager  = $eventManager;
+        $this->_eventManager   = $eventManager;
         $this->_messageManager = $messageManager;
-        $this->_cacheTypeList = $cacheTypeList;
-        $this->_helperData    = $helperData;
+        $this->_cacheTypeList  = $cacheTypeList;
+        $this->_helperData     = $helperData;
     }
 
     /**

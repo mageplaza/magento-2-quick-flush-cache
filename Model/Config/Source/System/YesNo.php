@@ -41,8 +41,8 @@ class YesNo extends AbstractOption
     public function toArray()
     {
         return [
-            self::AUTO   => __('Yes (auto)'),
-            self::MANUAL => __('Yes (manually)'),
+            self::AUTO   => __('Yes (Automatic)'),
+            self::MANUAL => __('Yes (Manual)'),
             self::NO     => __('No'),
         ];
     }

@@ -53,11 +53,11 @@ class YesNoTest extends TestCase
         $expectResult = [
             [
                 'value' => 1,
-                'label' => __('Yes (auto)')
+                'label' => __('Yes (Automatic)')
             ],
             [
                 'value' => 2,
-                'label' => __('Yes (manually)')
+                'label' => __('Yes (Manual)')
             ],
             [
                 'value' => 0,

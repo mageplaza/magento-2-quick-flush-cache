@@ -50,7 +50,7 @@ class Reindex extends AbstractController
         $this->_helperData->synchronizedSystemMessage();
         /** @var Messages $messageBlock */
         $messageBlock = $this->_layout->createBlock(Messages::class);
-        $messageBlock->addSuccess(__('You have reindex successfully.'));
+        $messageBlock->addSuccess(__('You have reindexed successfully.'));
         $result = [
             'status'  => true,
             'message' => $messageBlock->toHtml()
