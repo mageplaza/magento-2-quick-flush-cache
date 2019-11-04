@@ -25,9 +25,7 @@ use Exception;
 use Magento\AdminNotification\Model\ResourceModel\System\Message as SystemMessageResource;
 use Magento\AdminNotification\Model\ResourceModel\System\Message\Collection\SynchronizedFactory as SynchronizedColFact;
 use Magento\AdminNotification\Model\System\Message as SystemMessageModel;
-use Magento\Backend\Model\UrlInterface;
 use Magento\Framework\App\Helper\Context;
-use Magento\Framework\Data\Form\FormKey;
 use Magento\Framework\Notification\MessageList;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Store\Model\StoreManagerInterface;
@@ -40,16 +38,6 @@ use Mageplaza\Core\Helper\AbstractData;
 class Data extends AbstractData
 {
     const CONFIG_MODULE_PATH = 'mpquickflushcache';
-
-    /**
-     * @var FormKey
-     */
-    protected $_formKey;
-
-    /**
-     * @var UrlInterface
-     */
-    protected $_backendUrl;
 
     /**
      * @var MessageList
@@ -72,8 +60,6 @@ class Data extends AbstractData
      * @param Context $context
      * @param ObjectManagerInterface $objectManager
      * @param StoreManagerInterface $storeManager
-     * @param FormKey $formKey
-     * @param UrlInterface $backendUrl
      * @param MessageList $messageList
      * @param SystemMessageResource $messageResource
      * @param SynchronizedColFact $synchronizedColFact
@@ -82,8 +68,6 @@ class Data extends AbstractData
         Context $context,
         ObjectManagerInterface $objectManager,
         StoreManagerInterface $storeManager,
-        FormKey $formKey,
-        UrlInterface $backendUrl,
         MessageList $messageList,
         SystemMessageResource $messageResource,
         SynchronizedColFact $synchronizedColFact
@@ -94,8 +78,6 @@ class Data extends AbstractData
             $storeManager
         );
 
-        $this->_formKey             = $formKey;
-        $this->_backendUrl          = $backendUrl;
         $this->_messageList         = $messageList;
         $this->_messageResource     = $messageResource;
         $this->_synchronizedColFact = $synchronizedColFact;
@@ -140,25 +122,5 @@ class Data extends AbstractData
             /** @var SystemMessageModel $removedItem */
             $this->_messageResource->delete($removedItem);
         }
-    }
-
-    /**
-     * @return string
-     */
-    public function getFlushCacheUrl()
-    {
-        return $this->_backendUrl->getUrl('mpquickflushcache/cache/flushSystem', [
-            'form_key' => $this->_formKey->getFormKey()
-        ]);
-    }
-
-    /**
-     * @return string
-     */
-    public function getReindexUrl()
-    {
-        return $this->_backendUrl->getUrl('mpquickflushcache/indexer/reindex', [
-            'form_key' => $this->_formKey->getFormKey()
-        ]);
     }
 }
