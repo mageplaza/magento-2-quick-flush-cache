@@ -73,7 +73,6 @@ define([
                         if (type === 'reindex' && typeof gridIndexerJsObject !== 'undefined') {
                             gridIndexerJsObject.useAjax = true;
                             gridIndexerJsObject.reload();
-                            el.updateGrid();
                         }
                         if (type === 'cache' && typeof cache_gridJsObject !== 'undefined') {
                             cache_gridJsObject.useAjax = true;

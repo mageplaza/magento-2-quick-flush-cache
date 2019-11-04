@@ -91,6 +91,7 @@ class ControllerActionPredispatch implements ObserverInterface
             'mpquickflushcache_indexer_reindex'
         ];
         if ($this->_helperData->isEnabledFlushCache() === YesNo::AUTO
+            && !$request->isAjax()
             && !in_array($request->getFullActionName(), $notAllowedController, true)) {
             $invalidCaches = [];
             foreach ($this->_cacheTypeList->getInvalidated() as $type) {
