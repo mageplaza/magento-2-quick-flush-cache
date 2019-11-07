@@ -102,7 +102,7 @@ class ControllerActionPredispatch implements ObserverInterface
                     $this->_cacheTypeList->cleanType($typeId);
                 }
                 $this->_eventManager->dispatch('adminhtml_cache_flush_system');
-                $this->_messageManager->addSuccessMessage(__('The Magento cache storage has been auto flushed.'));
+                $this->_messageManager->addSuccessMessage(__('The Magento cache storage has been automatically flushed.'));
             }
         }
     }
