@@ -26,14 +26,14 @@
             <label>Quick Flush Cache</label>
             <tab>mageplaza</tab>
             <resource>Mageplaza_QuickFlushCache::configuration</resource>
-            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" canRestore="1">
                 <label>General</label>
-                <field id="enabled_flush_cache" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="enabled_flush_cache" translate="label comment" type="select" sortOrder="10" showInDefault="1" canRestore="1">
                     <label>Enable Quick Flush Cache</label>
                     <source_model>Mageplaza\QuickFlushCache\Model\Config\Source\System\YesNo</source_model>
                     <comment><![CDATA[With automatic mode, the cache is flushed automatically right when the page is reloaded<br>With manual mode, the cache is flushed manually when admin clicks on Flush Now button]]></comment>
                 </field>
-                <field id="enabled_reindex" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="enabled_reindex" translate="label comment" type="select" sortOrder="20" showInDefault="1" canRestore="1">
                     <label>Enable Quick Reindex</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>

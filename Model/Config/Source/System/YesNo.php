@@ -21,13 +21,13 @@
 
 namespace Mageplaza\QuickFlushCache\Model\Config\Source\System;
 
-use Mageplaza\QuickFlushCache\Model\Config\Source\AbstractOption;
+use Magento\Framework\Option\ArrayInterface;
 
 /**
  * Class YesNo
  * @package Mageplaza\QuickFlushCache\Model\Config\Source\System
  */
-class YesNo extends AbstractOption
+class YesNo implements ArrayInterface
 {
     const AUTO   = '1';
     const MANUAL = '2';
@@ -45,5 +45,18 @@ class YesNo extends AbstractOption
             self::MANUAL => __('Yes (Manual)'),
             self::NO     => __('No'),
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function toOptionArray()
+    {
+        $options = [];
+        foreach ($this->toArray() as $value => $label) {
+            $options[] = compact('value', 'label');
+        }
+
+        return $options;
     }
 }
