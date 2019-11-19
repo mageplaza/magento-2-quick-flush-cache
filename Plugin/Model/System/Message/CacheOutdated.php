@@ -57,7 +57,7 @@ class CacheOutdated
     public function afterGetText(SystemCacheOutdated $subject, $result)
     {
         if ($this->_helperData->isEnabledFlushCache() === YesNo::MANUAL) {
-            $result .= __(' <a id="mp-qfc-flush-cache" href="#">Flush Now!</a>');
+            $result .= ' <a id="mp-qfc-flush-cache" href="#">' . __('Flush Now!') . '</a>';
         }
 
         return $result;

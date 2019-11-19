@@ -26,30 +26,30 @@ define([
 
     $.widget('mageplaza.qfcAjax', {
         options: {
-            flushCacheUrl: {},
-            flushCacheIndexUrl: {},
-            reindexUrl: {},
-            reindexListUrl: {},
+            flushCacheUrl: '',
+            flushCacheIndexUrl: '',
+            reindexUrl: '',
+            reindexListUrl: ''
         },
 
         /**
          * @inheritDoc
          */
         _create: function () {
-            var el   = this,
+            var self   = this,
                 body = $('body');
 
             body.on('click', '#mp-qfc-flush-cache', function () {
-                el.quickFlushCacheAndReindex(el.options.flushCacheUrl, 'cache');
+                self.quickFlushCacheAndReindex(self.options.flushCacheUrl, 'cache');
             });
             body.on('click', '#mp-qfc-reindex', function () {
-                el.quickFlushCacheAndReindex(el.options.reindexUrl, 'reindex');
+                self.quickFlushCacheAndReindex(self.options.reindexUrl, 'reindex');
             });
         },
 
         /** Ajax quick flush cache & reindex */
         quickFlushCacheAndReindex: function (url, type) {
-            var el = this,
+            var self = this,
                 target;
 
             if (type === 'reindex') {
@@ -58,13 +58,13 @@ define([
             $.ajax({
                 type: "POST",
                 url: url,
-                data: {form_key: FORM_KEY},
+                data: {form_key: window.FORM_KEY},
                 success: function (response) {
                     if (response.ajaxRedirect) {
                         window.location.href = response.ajaxRedirect;
                     }
                     if (response.status) {
-                        target = el.updateGrid();
+                        target = self.updateGrid();
                         target.on('reloaded', function () {
                             $('.page-content .messages').remove();
                             $(response.message).insertBefore($('.page-columns'));
@@ -74,18 +74,18 @@ define([
                         });
                         if (type === 'reindex' && typeof gridIndexerJsObject !== 'undefined') {
                             gridIndexerJsObject.useAjax = true;
-                            gridIndexerJsObject.url = el.options.reindexListUrl;
+                            gridIndexerJsObject.url     = self.options.reindexListUrl;
                             gridIndexerJsObject.reload();
                         }
                         if (type === 'cache' && typeof cache_gridJsObject !== 'undefined') {
                             cache_gridJsObject.useAjax = true;
-                            cache_gridJsObject.url = el.options.flushCacheIndexUrl;
+                            cache_gridJsObject.url     = self.options.flushCacheIndexUrl;
                             cache_gridJsObject.reload();
                         }
                     }
                 },
                 error: function (e) {
-                    $(el.errorMessageHtml(e.responseText)).insertBefore($('.page-columns'));
+                    $(self.errorMessageHtml(e.responseText)).insertBefore($('.page-columns'));
                 }
             });
         },
