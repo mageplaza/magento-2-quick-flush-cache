@@ -73,14 +73,14 @@ define([
                             }
                         });
                         if (type === 'reindex' && typeof gridIndexerJsObject !== 'undefined') {
-                            gridIndexerJsObject.useAjax = true;
-                            gridIndexerJsObject.url     = self.options.reindexListUrl;
-                            gridIndexerJsObject.reload();
+                            window.gridIndexerJsObject.useAjax = true;
+                            window.gridIndexerJsObject.url     = self.options.reindexListUrl;
+                            window.gridIndexerJsObject.reload();
                         }
                         if (type === 'cache' && typeof cache_gridJsObject !== 'undefined') {
-                            cache_gridJsObject.useAjax = true;
-                            cache_gridJsObject.url     = self.options.flushCacheIndexUrl;
-                            cache_gridJsObject.reload();
+                            window.cache_gridJsObject.useAjax = true;
+                            window.cache_gridJsObject.url     = self.options.flushCacheIndexUrl;
+                            window.cache_gridJsObject.reload();
                         }
                     }
                 },

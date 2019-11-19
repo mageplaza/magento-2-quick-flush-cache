@@ -56,7 +56,7 @@ class Invalid
     public function afterGetText(IndexerInvalid $subject, $result)
     {
         if ($this->_helperData->isEnabledReindex()) {
-            $result .= __(' <a id="mp-qfc-reindex" href="#">Reindex Now!</a>');
+            $result .= ' <a id="mp-qfc-reindex" href="#">' . __('Reindex Now!') . '</a>';
         }
 
         return $result;
