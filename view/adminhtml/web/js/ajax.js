@@ -63,7 +63,7 @@ define([
                     if (response.ajaxRedirect) {
                         window.location.href = response.ajaxRedirect;
                     }
-                    if (response.status) {
+                    if (response.success) {
                         target = self.updateGrid();
                         target.on('reloaded', function () {
                             $('.page-content .messages').remove();

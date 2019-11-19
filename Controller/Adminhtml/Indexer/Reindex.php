@@ -52,7 +52,7 @@ class Reindex extends AbstractController
         $messageBlock = $this->_layout->createBlock(Messages::class);
         $messageBlock->addSuccess(__('You have reindexed successfully.'));
         $result = [
-            'status'  => true,
+            'success'  => true,
             'message' => $messageBlock->toHtml()
         ];
 
