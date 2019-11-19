@@ -1,2 +1,1 @@
-# Quick Flush Cache
-
+- User guide: https://docs.mageplaza.com/quick-flush-cache/
