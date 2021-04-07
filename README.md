@@ -102,3 +102,13 @@ From the Admin Panel, go to `Stores > Settings > Configuration > Mageplaza Exten
 
 ![](https://i.imgur.com/EC4TrnY.png)
 
+**Explore more extensions:**
+- [Magento 2 SEO extension](https://github.com/mageplaza/magento-2-seo)
+- [Magento 2 Blog extension](https://marketplace.magento.com/mageplaza-magento-2-blog-extension.html)
+- [M2 Extra Fee](https://www.mageplaza.com/magento-2-extra-fee/)
+- [M2 Customer Attributes](https://www.mageplaza.com/magento-2-customer-attributes/)
+- [M2 Google Tag Manager](https://www.mageplaza.com/magento-2-google-tag-manager/)
+- [M2 Store Locator](https://www.mageplaza.com/magento-2-store-locator-extension/)
+- [M2 Store Pickup](https://www.mageplaza.com/magento-2-store-pickup-extension/)
+- [Magento 2 GDPR](https://marketplace.magento.com/mageplaza-module-gdpr.html)
+- [M2 Quickbooks Online](https://www.mageplaza.com/magento-2-quickbooks-online/)
