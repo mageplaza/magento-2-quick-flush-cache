@@ -34,6 +34,13 @@ A: Yes, Quick Flush Cache supports Reindex button which you can click on to rein
 
 Install via composer (recommend). Run the following command in Magento 2 root folder:
 
+With Marketing Automation (recommend):
+```
+composer require mageplaza/module-quick-flush-cache mageplaza/module-smtp
+php bin/magento setup:upgrade
+php bin/magento setup:static-content:deploy
+```
+Without Marketing Automation:
 ```
 composer require mageplaza/module-quick-flush-cache
 php bin/magento setup:upgrade
