@@ -1,5 +1,7 @@
 # Magento 2 Quick Flush Cache extension 
 
+> **(Update) 2023-03-09**: This project will be marked as a paid item and no longer be maintained as free. For further updates and technical support, please follow [Magento 2 Backend Tools](https://www.mageplaza.com/magento-2-backend-tools/) for more information. We understand that this change might create inconvenience for our users. However, this is to ensure that the module will be updated with more useful features to support Magento 2 stores better. If you have any concerns or ideas about any features you would like to see, don’t hesitate to [contact us](https://www.mageplaza.com/support/) and leave a request.
+
 [Quick Flush Cache](http://www.mageplaza.com/magento-2-quick-flush-cache/) is the solution to save a lot of time flushing cache at the admin backend. With Quick Flush Cache, clearing cache becomes easily with the automatic process or ajax flushing on the current page. 
 
 
